@@ -1,7 +1,8 @@
 #largestPrimeFactor_ex03.py
-#code 1.
-#time :  0.03852725028991699
+#code 2.
+#time :  0.47982215881347656
 #find primefactor : 71, 839, 1471, 6857
+#code1 execution time is good better than code2
 
 import time
 
@@ -22,8 +23,12 @@ def IsPrimeFactor(number):
 
 
 def findPrimeFactor(number,list):
-    returnvalue = 0
-    primefactor = 2
+    returnvalue = 0  # save PrimeFactor check function return value.
+    primefactor = 1 # next primefactor.
+    listItem = 0 # use for loop. save primefactorlist item value.
+    measuretime = 0
+
+    primefactorlist = [] # save primefactor to find prev loop
 
     if(number < 3):
         print("Please input other number. number 2 is prime factor")
@@ -31,27 +36,28 @@ def findPrimeFactor(number,list):
     measuretime = time.time()
 
     while(1):
+        primefactor = primefactor + 1
+
         if(primefactor >= number):
             break
 
+        if (number == IsPrimeFactor(number)):
+            list.append(number)
+            break
+
+        for listItem in primefactorlist:
+            if (number % listItem == 0):
+                number = number // listItem
+                list.append(listItem)
+
         returnvalue = IsPrimeFactor(primefactor)
+
         if(returnvalue != primefactor) :
-            primefactor = primefactor + 1
             continue
-        elif (number%primefactor == 0):
-            number = number // primefactor
-            list.append(primefactor)
-            primefactor = 2
-
-            if(number == IsPrimeFactor(number)):
-                list.append(number)
-                break
-
-        primefactor = primefactor + 1
+        else:
+            primefactorlist.append(primefactor)
 
     print("time : ", time.time() - measuretime)
-
-
 
 if __name__ == "__main__":
     primefactorlist = []
