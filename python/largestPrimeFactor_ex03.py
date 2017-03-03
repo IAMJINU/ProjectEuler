@@ -1,4 +1,9 @@
 #largestPrimeFactor_ex03.py
+#code 1.
+#time :  0.03852725028991699
+#find primefactor : 71, 839, 1471, 6857
+
+import time
 
 def IsPrimeFactor(number):
     div = 2
@@ -23,6 +28,8 @@ def findPrimeFactor(number,list):
     if(number < 3):
         print("Please input other number. number 2 is prime factor")
 
+    measuretime = time.time()
+
     while(1):
         if(primefactor >= number):
             break
@@ -41,6 +48,8 @@ def findPrimeFactor(number,list):
                 break
 
         primefactor = primefactor + 1
+
+    print("time : ", time.time() - measuretime)
 
 
 
